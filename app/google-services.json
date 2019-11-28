@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "338190911343",
+    "firebase_url": "https://fianlproject-1f324.firebaseio.com",
+    "project_id": "fianlproject-1f324",
+    "storage_bucket": "fianlproject-1f324.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338190911343:android:71761498d3aeceec5aca9a",
+        "android_client_info": {
+          "package_name": "bonch.dev.shool.fianlproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338190911343-pspaehlo2aanqb8ojftsdbdv17u8gk01.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bonch.dev.shool.fianlproject",
+            "certificate_hash": "e0f9173295e102c387594e29589c3be014090b22"
+          }
+        },
+        {
+          "client_id": "338190911343-gffas4jd5o2uu1e35jh4cginl5di93tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmmgBhv8TIyC4wxhi2hxuAqkRMxRCq9Nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338190911343-gffas4jd5o2uu1e35jh4cginl5di93tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
