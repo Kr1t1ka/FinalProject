@@ -1,5 +1,6 @@
 package bonch.dev.shool.fianlproject.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -26,5 +27,11 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+    }
+    fun intentCourses() {
+        startActivity(Intent(this, CoursesActivity().javaClass))
+        finish()
     }
 }

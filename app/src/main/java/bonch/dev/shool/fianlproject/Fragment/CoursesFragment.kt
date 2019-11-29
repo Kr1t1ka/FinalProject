@@ -5,36 +5,44 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.NavHostFragment
-
+import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.CoursesAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class CoursesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var coursesRecyclerView: RecyclerView
+    private lateinit var coursesButton : Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val view: View = inflater.inflate(R.layout.fragment_courses, container, false)
 
-        return inflater.inflate(R.layout.fragment_courses, container, false)
+        coursesRecyclerView = view.findViewById(R.id.recycle_courses)
+        coursesRecyclerView.layoutManager = LinearLayoutManager(container!!.context)
+
+        var adapter = CoursesAdapter()
+        coursesRecyclerView.adapter = adapter
+
+        coursesButton = view.findViewById(R.id.button_next)
+
+        coursesButton.setOnClickListener {
+            (context as MainActivity).intentCourses()
+        }
+
+
+        return view
     }
-
-
 }
