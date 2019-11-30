@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun intentCourses() {
-        startActivity(Intent(this, CoursesActivity().javaClass))
+        startActivity(Intent(this, CourseActivity().javaClass))
         finish()
     }
 }
