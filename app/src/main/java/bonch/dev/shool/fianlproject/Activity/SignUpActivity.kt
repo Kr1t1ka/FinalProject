@@ -57,6 +57,13 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+
+    /**
+     * метод создает нового пользователя и отправляет в БД его данные(имя, пароль, статус, почту)
+     * в случае успеха перекидывает на новую форму.
+     * Сдесь же проверяется правильность заполнения полей. В случае ошибки выводятся тосты с
+     * сообщением
+     */
     private fun createNewUser(name : String, email : String, password : String,
                                confirmationPassword : String ) {
         if (name =="" || email =="" || password == "" || confirmationPassword == "")
