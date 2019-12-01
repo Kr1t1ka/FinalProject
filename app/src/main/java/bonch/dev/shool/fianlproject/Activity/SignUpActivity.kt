@@ -85,6 +85,11 @@ class SignUpActivity : AppCompatActivity() {
                 this, "Пароли не совпадают", Toast.LENGTH_SHORT
             ).show()
             return
+        }else if (password.length < 6){
+            Toast.makeText(
+                this, "Пароль меньше 6 символов", Toast.LENGTH_SHORT
+            ).show()
+            return
         }
 
 
