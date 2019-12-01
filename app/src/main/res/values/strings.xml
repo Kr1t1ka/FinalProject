@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">fianlProject</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_home_second">Hello HomeSecondFragment. Arg: %1$s</string>
+    <string name="hello_dashboard_second">Hello HomeSecondFragment. Arg: %1$s</string>
+    <string name="hello_notifications_second">Hello HomeSecondFragment. Arg: %1$s</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="home_second">Home Second</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_course">CourseActivity</string>
+    <string name="tab_text_1">1 слайд</string>
+    <string name="tab_text_2">2 слайд</string>
+    <string name="tab_text_3">тест слайд</string>
+    <string name="tab_text_4">Любой текст</string>
+    <string name="tab_text_5">лалалалала</string>
+    <string name="text_course">Ива́н IV Васи́льевич, прозванный Гро́зным (впервые — в «Истории Российской» Татищева[6]), также имел имена Тит и Смарагд[7], в постриге — Иона (25 августа 1530, село Коломенское[8] под Москвой — 18 (28) марта 1584, Москва) — государь, великий князь московский и всея Руси с 1533 года, первый царь всея Руси (с 1547 года; кроме 1575—1576, когда «великим князем всея Руси» номинально был Симеон Бекбулатович).
+
+Старший сын великого князя московского Василия III и Елены Глинской. Номинально Иван стал правителем в 3 года. После восстания в Москве 1547 года правил с участием круга приближённых лиц — «Избранной Рады»[Комм 1]. При нём начался созыв Земских соборов, составлен Судебник 1550 года.
+        Проведены реформы военной службы, судебной системы, государственного управления, в том числе внедрены элементы самоуправления на местном уровне (губная, земская и другие реформы).
+        Были покорены Казанское и Астраханское ханства, присоединены Западная Сибирь, Башкирия, земли Ногайской Орды. Таким образом, при Иване IV прирост территостала размером больше всей остальной Европы[9].</string>
 </resources>

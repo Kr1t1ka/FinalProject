@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_courses"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Курсы" />
+
+    <item
+        android:id="@+id/navigation_store"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Магазин" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Профиль" />
+
+    <item
+        android:id="@+id/navigation_ficha"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Фича" />
+
+
+</menu>
