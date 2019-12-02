@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.DB.Courses.Course
+import bonch.dev.shool.fianlproject.moduls.DB.Courses.Courses
 import com.google.firebase.auth.FirebaseAuth
 
 class StartActivity : AppCompatActivity() {
@@ -39,6 +41,7 @@ class StartActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity().javaClass))
             finish()
         }
+
     }
 
 
