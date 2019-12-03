@@ -13,18 +13,19 @@ import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.CoursesAdapter
-import bonch.dev.shool.fianlproject.moduls.DB.Courses.Course
+import bonch.dev.shool.fianlproject.moduls.data.Course
+import bonch.dev.shool.fianlproject.moduls.data.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 
-class CoursesFragment : Fragment() {
+class CoursesFragment() : Fragment() {
 
     private lateinit var coursesRecyclerView: RecyclerView
     private lateinit var coursesButton : Button
-
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,8 @@ class CoursesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_courses, container, false)
+
+        user = (context as MainActivity).user
 
         coursesRecyclerView = view.findViewById(R.id.recycle_courses)
         coursesRecyclerView.layoutManager = LinearLayoutManager(container!!.context)
@@ -66,6 +69,7 @@ class CoursesFragment : Fragment() {
 
         mDatabaseReference
             .addValueEventListener(object : ValueEventListener {
+
                 /**если данные в БД меняются
                  * метод создаст новый список курсов и переопределит адаптер
                  */
@@ -77,7 +81,14 @@ class CoursesFragment : Fragment() {
                         val price = it.child("Price").value.toString()
                         val description = it.child("Description").value.toString()
 
-                        courses.add(Course(id!!, name, description, price.toFloat()))
+                        courses.add(
+                            Course(
+                                id!!,
+                                name,
+                                description,
+                                price.toFloat()
+                            )
+                        )
 
                     }
 

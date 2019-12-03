@@ -7,8 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import bonch.dev.shool.fianlproject.R
-import bonch.dev.shool.fianlproject.moduls.DB.Courses.Course
-import bonch.dev.shool.fianlproject.moduls.DB.Courses.Courses
+import bonch.dev.shool.fianlproject.moduls.data.User
 import com.google.firebase.auth.FirebaseAuth
 
 class StartActivity : AppCompatActivity() {
@@ -61,9 +60,17 @@ class StartActivity : AppCompatActivity() {
         mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){task ->
                 if(task.isSuccessful){
+
+                    var id = task.result!!.user!!.uid.toString()
+                    var email = task.result!!.user!!.email.toString()
+                    var name = task.result!!.user!!.displayName.toString()
+                    var user = User(id, name, email)
+
                     val intent = Intent(this,  MainActivity().javaClass)
+                    intent.putExtra("User",user)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     startActivity(intent)
+
                 }
                 else{
                     Toast.makeText(this, "Ошиббка авторизации",

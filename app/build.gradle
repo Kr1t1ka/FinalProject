@@ -11,6 +11,10 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
+    androidExtensions {
+        experimental = true
+    }
+
     defaultConfig {
         applicationId "bonch.dev.shool.fianlproject"
         minSdkVersion 19

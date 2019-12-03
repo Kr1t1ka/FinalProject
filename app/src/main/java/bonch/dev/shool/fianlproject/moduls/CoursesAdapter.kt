@@ -7,10 +7,9 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.shool.fianlproject.R
-import bonch.dev.shool.fianlproject.moduls.DB.Courses.Course
+import bonch.dev.shool.fianlproject.moduls.data.Course
 import java.util.*
 
 
@@ -52,7 +51,12 @@ class  CoursesLab() {
     init {
         coursesList = mutableListOf()
         for(i in 0..10){
-            val message = Course("", "", "", 1.0.toFloat())
+            val message = Course(
+                "",
+                "",
+                "",
+                1.0.toFloat()
+            )
             coursesList.add(message)
         }
     }
