@@ -46,7 +46,7 @@ class CoursesFragment() : Fragment() {
         var adapter = CoursesAdapter()
         coursesRecyclerView.adapter = adapter
 
-        initFirebase("Kurses")
+        initFirebase()
 
         coursesButton = view.findViewById(R.id.button_next)
 
@@ -61,45 +61,83 @@ class CoursesFragment() : Fragment() {
     /**
      * метод переопределяет адаптер, заполняя его курсами из БД
      */
-    private fun initFirebase(path: String){
+    private fun initFirebase(){
         //получаем точку входа для базы данных
-        var mFirebaseDatabase = FirebaseDatabase.getInstance()
+        val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
-        var mDatabaseReference = mFirebaseDatabase.getReference(path)
+        val mDatabaseReference = mFirebaseDatabase.getReference("Users/${user.ID}/Courses")
+        val mDatabaseReferenceCourses = mFirebaseDatabase.getReference("Kurses")
+
+        val courses = mutableListOf<Course>()
+        val key = mutableListOf<String>()
 
         mDatabaseReference
             .addValueEventListener(object : ValueEventListener {
 
                 /**если данные в БД меняются
-                 * метод создаст новый список курсов и переопределит адаптер
+                 * метод создаст список ключей курсов, добавленных пользователем
                  */
                 override fun onDataChange(data: DataSnapshot) {
-                    var courses = mutableListOf<Course>()
+
                     data.children.forEach { it ->
-                        val id = it.key
-                        val name = it.child("Name").value.toString()
-                        val price = it.child("Price").value.toString()
-                        val description = it.child("Description").value.toString()
-
-                        courses.add(
-                            Course(
-                                id!!,
-                                name,
-                                description,
-                                price.toFloat()
-                            )
-                        )
-
+                        val id = it.child("ID").value.toString()
+                        key.add(id)
                     }
 
-                    var adapter = CoursesAdapter(courses)
-                    coursesRecyclerView.adapter = adapter
-
+                    //вешаем ивент на БД курсов
+                    addEventCourses()
                 }
 
                 override fun onCancelled(p0: DatabaseError) {
                     Log.d(ContentValues.TAG, p0.message)
                 }
+
+                /**
+                 * метод добавит событие на бд с курсами.
+                 * заполнит список курсов и переопределит адаптер
+                 */
+                fun addEventCourses(){
+                    mDatabaseReferenceCourses
+                        .addValueEventListener(object : ValueEventListener {
+
+                            /**если данные в БД меняются
+                             * метод создаст новый список курсов юзера
+                             * и переопределит адаптер
+                             */
+                            override fun onDataChange(data: DataSnapshot) {
+
+                                data.children.forEach { it ->
+                                    val id = it.key.toString()
+
+                                    if (key.contains(id))
+                                    {
+                                        val name = it.child("Name").value.toString()
+                                        val price = it.child("Price").value.toString()
+                                        val description = it.child("Description").value.toString()
+
+                                        courses.add(
+                                            Course(
+                                                id,
+                                                name,
+                                                description,
+                                                price.toFloat()
+                                            )
+                                        )
+                                    }
+
+                                }
+
+                                var adapter = CoursesAdapter(courses)
+                                coursesRecyclerView.adapter = adapter
+                            }
+
+                            override fun onCancelled(p0: DatabaseError) {
+                                Log.d(ContentValues.TAG, p0.message)
+                            }
+
+                        });
+                }
+
             });
     }
 }
