@@ -7,9 +7,9 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.data.Course
 import java.util.*
 
 
@@ -46,20 +46,29 @@ data class Message(val ID: Int, val messageText: String?, val sentDate: Date, va
 }
 
 class  CoursesLab() {
-    val coursesList: MutableList<Message>
+    val coursesList: MutableList<Course>
 
     init {
         coursesList = mutableListOf()
         for(i in 0..10){
-            val message = Message(i, "Привет, верни сотку",  Date(), true)
+            val message = Course(
+                "",
+                "",
+                "",
+                1.0.toFloat()
+            )
             coursesList.add(message)
         }
     }
 }
 
-class CoursesAdapter: RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
+class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
 
-    val messageList = CoursesLab().coursesList
+    var messageList = CoursesLab().coursesList
+
+    constructor(list: MutableList<Course>): this(){
+        messageList = list
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
 
@@ -80,7 +89,7 @@ class CoursesAdapter: RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if(messageList[position].sentUser) 1 else 2
+        return 1
     }
 
     inner class MessageHolder(view: View) : RecyclerView.ViewHolder(view){

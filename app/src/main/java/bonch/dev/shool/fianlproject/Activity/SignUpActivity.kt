@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.data.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -105,7 +106,16 @@ class SignUpActivity : AppCompatActivity() {
                     currentUserDb.child("Email").setValue(email)
                     currentUserDb.child("isAdmin").setValue(0)
 
-                    startActivity(Intent(this, MainActivity().javaClass))
+                    var id = task.result!!.user!!.uid.toString()
+                    var email = task.result!!.user!!.email.toString()
+                    var name = task.result!!.user!!.displayName.toString()
+                    var user = User(id, name, email)
+
+                    val intent = Intent(this,  MainActivity().javaClass)
+                    intent.putExtra("User",user)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+                    startActivity(intent)
                     finish()
                 }
                 else {
