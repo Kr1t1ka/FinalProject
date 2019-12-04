@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.User
@@ -12,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class StartActivity : AppCompatActivity() {
 
-    private lateinit var InputButton : Button
+    private lateinit var InputButton : ImageButton
     private lateinit var RegistrationButton : Button
 
     private lateinit var etPassword : EditText
@@ -24,11 +25,11 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_activity)
 
-        InputButton = findViewById(R.id.input_button)
-        RegistrationButton = findViewById(R.id.regestration_button)
+        InputButton = findViewById(R.id.input_button) // кнопка вход
+        RegistrationButton = findViewById(R.id.regestration_button) // кнопка регистрации
 
-        etEmail = findViewById(R.id.editTextTextEmailAddress)
-        etPassword = findViewById(R.id.editTextTextPassword)
+        etEmail = findViewById(R.id.editTextTextEmailAddress) // почта
+        etPassword = findViewById(R.id.editTextTextPassword) // пароль
 
         mAuth = FirebaseAuth.getInstance()
 
