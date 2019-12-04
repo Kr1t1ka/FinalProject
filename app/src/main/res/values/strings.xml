@@ -13,6 +13,10 @@
     <string name="home_second">Home Second</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="some_id">Не можете войти?  </string>
+
+    <string name="avtorization">Авторизация</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_course">CourseActivity</string>
     <string name="tab_text_1">1 слайд</string>
@@ -25,4 +29,8 @@
 Старший сын великого князя московского Василия III и Елены Глинской. Номинально Иван стал правителем в 3 года. После восстания в Москве 1547 года правил с участием круга приближённых лиц — «Избранной Рады»[Комм 1]. При нём начался созыв Земских соборов, составлен Судебник 1550 года.
         Проведены реформы военной службы, судебной системы, государственного управления, в том числе внедрены элементы самоуправления на местном уровне (губная, земская и другие реформы).
         Были покорены Казанское и Астраханское ханства, присоединены Западная Сибирь, Башкирия, земли Ногайской Орды. Таким образом, при Иване IV прирост территостала размером больше всей остальной Европы[9].</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="singIn">Вход</string>
+    <string name="registration">Регестрация</string>
 </resources>
