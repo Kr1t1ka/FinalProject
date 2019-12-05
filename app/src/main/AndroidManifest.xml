@@ -12,8 +12,10 @@
         <activity
             android:name=".Activity.CourseActivity"
             android:label="@string/title_activity_course"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Activity.CoursesActivity" />
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
         <activity
             android:name=".Activity.MainActivity"
             android:label="@string/title_activity_main" />
