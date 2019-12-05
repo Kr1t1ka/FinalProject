@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.data.Course
 import bonch.dev.shool.fianlproject.moduls.data.User
 
 class MainActivity : AppCompatActivity() {
@@ -35,8 +36,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun intentCourses() {
-        startActivity(Intent(this, CourseActivity().javaClass))
+    fun intentCourses(course : Course) {
+        val intent = Intent(this, CourseActivity().javaClass)
+        intent.putExtra("Course", course)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        startActivity(intent)
         finish()
     }
 }
