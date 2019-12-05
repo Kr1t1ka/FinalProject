@@ -38,14 +38,14 @@ class StoreFragment : Fragment() {
 
         var adapter = CoursesAdapter()
         storeRecyclerView.adapter = adapter
-        
+
         addEventCourses()
 
         return view
     }
 
 
-    fun addEventCourses(){
+    private fun addEventCourses(){
         //получаем точку входа для базы данных
         val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
@@ -55,7 +55,7 @@ class StoreFragment : Fragment() {
         mDatabaseReference.addValueEventListener(object : ValueEventListener {
 
             /**если данные в БД меняются
-             * метод создаст новый список курсов юзера
+             * метод создаст новый список курсов
              * и переопределит адаптер
              */
             override fun onDataChange(data: DataSnapshot) {

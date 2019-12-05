@@ -86,6 +86,7 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
         holder.bind(position)
 
+        
     }
 
     override fun getItemViewType(position: Int): Int {

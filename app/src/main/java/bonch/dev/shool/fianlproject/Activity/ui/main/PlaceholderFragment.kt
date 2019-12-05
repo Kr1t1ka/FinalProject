@@ -1,6 +1,7 @@
 package bonch.dev.shool.fianlproject.Activity.ui.main
 
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,50 +11,43 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import bonch.dev.shool.fianlproject.R
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
+
 class PlaceholderFragment : Fragment() {
+    /**
+     * служит для загрузки текста слайда в фрагмент
+     */
+    companion object {
+        fun newInstance(message: String): PlaceholderFragment {
 
-    private lateinit var pageViewModel: PageViewModel
+            val f = PlaceholderFragment()
+            val bdl = Bundle(1)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProviders.of(this).get(PageViewModel::class.java).apply {
-            setIndex(arguments?.getInt(ARG_SECTION_NUMBER) ?: 1)
+            bdl.putString(EXTRA_MESSAGE, message)
+            f.setArguments(bdl)
+
+            return f
+
         }
+    }
+    
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.course_fragment, container, false)
-        val textView: TextView = root.findViewById(R.id.section_label)
-        pageViewModel.text.observe(this, Observer<String> {
-            textView.text = it
-        })
-        return root
+            var root: View? = inflater.inflate(R.layout.course_fragment, container, false);
+
+            val message = arguments!!.getString(EXTRA_MESSAGE)
+
+            var tvMessage: TextView  = root!!.findViewById(R.id.section_label)
+            tvMessage.text = message
+
+            return root
     }
 
-    companion object {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private const val ARG_SECTION_NUMBER = "section_number"
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        @JvmStatic
-        fun newInstance(sectionNumber: Int): PlaceholderFragment {
-            return PlaceholderFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
-                }
-            }
-        }
-    }
 }
