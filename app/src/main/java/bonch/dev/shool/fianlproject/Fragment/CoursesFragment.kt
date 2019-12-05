@@ -60,7 +60,7 @@ class CoursesFragment() : Fragment() {
         //получаем точку входа для базы данных
         val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
-        val mDatabaseReference = mFirebaseDatabase.getReference("Users/${user.ID}/Courses")
+        val mDatabaseReference = mFirebaseDatabase.getReference("Users/${user.ID}")
         val mDatabaseReferenceCourses = mFirebaseDatabase.getReference("Kurses")
 
         val courses = mutableListOf<Course>()
@@ -74,7 +74,13 @@ class CoursesFragment() : Fragment() {
                  */
                 override fun onDataChange(data: DataSnapshot) {
 
-                    data.children.forEach { it ->
+                    var isAdmin = data.child("isAdmin").toString()
+                    var name = data.child("UserName").toString()
+
+                    user.isAdmin = isAdmin
+                    user.UserName = name
+                    
+                    data.child("Courses").children.forEach { it ->
                         val id = it.child("ID").value.toString()
                         key.add(id)
                     }

@@ -109,10 +109,10 @@ class SignUpActivity : AppCompatActivity() {
                     var id = task.result!!.user!!.uid.toString()
                     var email = task.result!!.user!!.email.toString()
                     var name = task.result!!.user!!.displayName.toString()
-                    var user = User(id, name, email)
+                    var user = User(id, name, email,"0")
 
                     val intent = Intent(this,  MainActivity().javaClass)
-                    intent.putExtra("User",user)
+                    intent.putExtra("UserName",user)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
                     startActivity(intent)
