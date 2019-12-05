@@ -13,6 +13,7 @@ import android.view.MenuItem
 import bonch.dev.shool.fianlproject.Activity.ui.main.PlaceholderFragment
 import bonch.dev.shool.fianlproject.Activity.ui.main.SectionsPagerAdapter
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.data.Course
 import bonch.dev.shool.fianlproject.moduls.data.Slide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,6 +24,7 @@ class CourseActivity : AppCompatActivity() {
 
     private lateinit var viewpager: ViewPager
     private lateinit var tabs: TabLayout
+    private lateinit var course: Course
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +32,9 @@ class CourseActivity : AppCompatActivity() {
 
         tabs = findViewById(R.id.tabs)
         viewpager = findViewById(R.id.view_pager)
+        course = intent.getParcelableExtra("Course")
 
-        addEventCourses("Kurs")
+        addEventCourses(course.ID)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
 

@@ -50,11 +50,6 @@ class CoursesFragment() : Fragment() {
 
         coursesButton = view.findViewById(R.id.button_next)
 
-        coursesButton.setOnClickListener {
-            (context as MainActivity).intentCourses()
-        }
-
-
         return view
     }
 
