@@ -18,7 +18,7 @@
             android:gravity="center"
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
-            android:text="@string/app_name"
+            android:text="Title"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
             android:textColor="#FFFFFF"
             android:textColorHighlight="#000000"
@@ -47,6 +47,16 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:text="+"
+        android:textAllCaps="false"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/buttom_save"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="save"
         android:textAllCaps="false"
         android:visibility="visible" />
 

@@ -26,6 +26,7 @@ class CourseActivity : AppCompatActivity() {
     private lateinit var tabs: TabLayout
     private lateinit var course: Course
     private lateinit var buttonSlaidPlus: Button
+    private lateinit var buttonSave: Button
     private lateinit var title: EditText
     lateinit var user : User
 
@@ -40,6 +41,7 @@ class CourseActivity : AppCompatActivity() {
         title = findViewById(R.id.title)
         course = intent.getParcelableExtra("Course")
         buttonSlaidPlus = findViewById(R.id.plus_slaid)
+        buttonSave = findViewById(R.id.buttom_save)
         user = intent.getParcelableExtra("User")
 
         var admin : String = user.isAdmin
@@ -49,11 +51,19 @@ class CourseActivity : AppCompatActivity() {
 
         }else{
             buttonSlaidPlus.setVisibility(View.GONE)
+            buttonSave.setVisibility(View.GONE)
             title.setEnabled(false)
         }
 
         buttonSlaidPlus.setOnClickListener {
             addSlideBd()
+        }
+
+        /**
+         * кнопка save, по нажатию сто то происходит
+         */
+        buttonSave.setOnClickListener {
+
         }
 
 
