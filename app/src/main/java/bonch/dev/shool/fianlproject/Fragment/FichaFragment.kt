@@ -60,11 +60,16 @@ class FichaFragment : Fragment() {
             val responsePhoto = servicePhoto.GetCats()
             try {
                 withContext(Dispatchers.Main) {
-                    if (response.isSuccessful && responsePhoto.isSuccessful) {
+                    if (response.isSuccessful && responsePhoto.isSuccessful
+                        && responsePhoto.body()!= null && response.body()!=null) {
                         try {
-                            Glide.with(context).load(responsePhoto.body()!![0].url).into(ivCats)
 
-                            tvFacts.text = response.body()!!.text.toString()
+                            if (context != null)
+                            {
+                                Glide.with(context).load(responsePhoto.body()!![0].url).into(ivCats)
+                                tvFacts.text = response.body()!!.text.toString()
+                            }else
+                                return@withContext
 
                         } catch (err: HttpException) {
                             Log.d(ContentValues.TAG, err.message)
