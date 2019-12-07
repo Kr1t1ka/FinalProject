@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener
 class CoursesFragment() : Fragment() {
 
     private lateinit var coursesRecyclerView: RecyclerView
-    private lateinit var coursesButton : Button
     private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,8 +46,6 @@ class CoursesFragment() : Fragment() {
         coursesRecyclerView.adapter = adapter
 
         initFirebase()
-
-        coursesButton = view.findViewById(R.id.button_next)
 
         return view
     }

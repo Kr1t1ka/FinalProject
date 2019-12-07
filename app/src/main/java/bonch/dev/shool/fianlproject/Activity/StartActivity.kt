@@ -27,7 +27,6 @@ class StartActivity : AppCompatActivity() {
 
         InputButton = findViewById(R.id.input_button) // кнопка вход
         RegistrationButton = findViewById(R.id.regestration_button) // кнопка регистрации
-
         etEmail = findViewById(R.id.editTextTextEmailAddress) // почта
         etPassword = findViewById(R.id.editTextTextPassword) // пароль
 
@@ -78,6 +77,5 @@ class StartActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
-
     }
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.R
@@ -37,7 +38,7 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
         holder.bind(position)
 
-        var button = holder.itemView.findViewById<Button>(R.id.button3)
+        var button = holder.itemView.findViewById<ImageButton>(R.id.button3)
 
         button.setOnClickListener {//вешаем онклик на кнопку курса в ресайклере.
             (parent.context as MainActivity).intentCourses(courseList[position])

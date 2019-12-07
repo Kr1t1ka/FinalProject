@@ -5,6 +5,7 @@ import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -44,7 +45,7 @@ class PlaceholderFragment : Fragment() {
 
             val message = arguments!!.getString(EXTRA_MESSAGE)
 
-            var tvMessage: TextView  = root!!.findViewById(R.id.section_label)
+            var tvMessage: TextView = root!!.findViewById(R.id.section_label)
             tvMessage.text = message
 
             return root

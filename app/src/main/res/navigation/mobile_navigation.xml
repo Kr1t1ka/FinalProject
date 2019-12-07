@@ -8,25 +8,21 @@
     <fragment
         android:id="@+id/navigation_courses"
         android:name="bonch.dev.shool.fianlproject.Fragment.CoursesFragment"
-        android:label="Курсы"
         tools:layout="@layout/fragment_courses"/>
 
     <fragment
         android:id="@+id/navigation_store"
         android:name="bonch.dev.shool.fianlproject.Fragment.StoreFragment"
-        android:label="Магазин"
         tools:layout="@layout/fragment_store" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="bonch.dev.shool.fianlproject.Fragment.ProfileFragment"
-        android:label="Профиль"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_ficha"
         android:name="bonch.dev.shool.fianlproject.Fragment.FichaFragment"
-        android:label="Фича"
         tools:layout="@layout/fragment_ficha" />
 
 </navigation>

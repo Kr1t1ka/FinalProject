@@ -17,7 +17,7 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
@@ -28,14 +28,15 @@
             app:srcCompat="@drawable/cardview_1"
             tools:ignore="VectorDrawableCompat" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <ImageButton
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="26dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="#F1F1F1"
             app:srcCompat="@drawable/cardview_2"
             tools:ignore="VectorDrawableCompat" />
 
@@ -71,9 +72,10 @@
             android:layout_marginBottom="10dp"
             android:text="Перейти к оглавлению"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintStart_toStartOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="@+id/imageButton" />
+            app:layout_constraintBottom_toBottomOf="@+id/image_button"
+            app:layout_constraintEnd_toEndOf="@+id/image_button"
+            app:layout_constraintStart_toStartOf="@+id/image_button"
+            app:layout_constraintTop_toTopOf="@+id/image_button" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

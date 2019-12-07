@@ -1,6 +1,7 @@
 package bonch.dev.shool.fianlproject.Activity
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -10,21 +11,32 @@ import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import bonch.dev.shool.fianlproject.Activity.ui.main.PlaceholderFragment
 import bonch.dev.shool.fianlproject.Activity.ui.main.SectionsPagerAdapter
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.Course
 import bonch.dev.shool.fianlproject.moduls.data.Slide
+import bonch.dev.shool.fianlproject.moduls.data.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.*
 
 class CourseActivity : AppCompatActivity() {
 
     private lateinit var viewpager: ViewPager
     private lateinit var tabs: TabLayout
     private lateinit var course: Course
+    private lateinit var buttonSlaidPlus: Button
+    private lateinit var title: EditText
+    public lateinit var user : User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,17 +44,44 @@ class CourseActivity : AppCompatActivity() {
 
         tabs = findViewById(R.id.tabs)
         viewpager = findViewById(R.id.view_pager)
+        title = findViewById(R.id.title)
         course = intent.getParcelableExtra("Course")
+        buttonSlaidPlus = findViewById(R.id.plus_slaid)
+        user = intent.getParcelableExtra("User")
+
+        var admin : String = user.isAdmin
+
+        if(admin == "DataSnapshot { key = isAdmin, value = 0 }"){
+            buttonSlaidPlus.setVisibility(View.GONE)
+            title.setEnabled(false)
+            /**
+             * тут еще должено быть переключение TextEdit на возможность редактирования
+             * по умолчанию должна стоять невозможность редактирования
+             */
+        }
+
+        /**
+          тут сверху
+          Просто проверка на админа, проходишь ее и у тебя есть заветная кнопка, она правда ничего не делает.
+         Но это только пока...
+         (kritika)
+         теперь еще можно поменять заголовок с finalProgect на что то другое
+         админом быть круто!
+         */
+
+        buttonSlaidPlus.setOnClickListener {
+            /**
+             * тут по нажатию книпки долен появлятся новый слайд курса
+             */
+        }
+
+
 
         addEventCourses(course.ID)
-
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
     }
+
+
+
 
     /**
      * функция заполняет список слайдов, создает фрагменты и устанавливает адаптер
