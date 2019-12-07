@@ -25,12 +25,12 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.start_activity)
 
+        autoLogin()
+
         InputButton = findViewById(R.id.input_button) // кнопка вход
         RegistrationButton = findViewById(R.id.regestration_button) // кнопка регистрации
         etEmail = findViewById(R.id.editTextTextEmailAddress) // почта
         etPassword = findViewById(R.id.editTextTextPassword) // пароль
-
-        mAuth = FirebaseAuth.getInstance()
 
         InputButton.setOnClickListener {
             logInUser(etEmail.text.toString(), etPassword.text.toString())
@@ -43,6 +43,31 @@ class StartActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * метод выполнит авторизацию, если бзер раньше входил в прилоржение
+     */
+    fun autoLogin(){
+        mAuth = FirebaseAuth.getInstance()
+
+        if (mAuth!!.getCurrentUser() != null) {
+            val id =mAuth!!.getCurrentUser()!!.uid.toString()
+            val email = mAuth!!.getCurrentUser()!!.email.toString()
+            val name = mAuth!!.getCurrentUser()!!.displayName.toString()
+            val user = User(id, name, email, "0")
+
+            updateUI(user)
+        }
+    }
+
+    /**
+     * метод вызывает main view и передает на него юзера
+     */
+    fun updateUI(user : User){
+        val intent = Intent(this,  MainActivity().javaClass)
+        intent.putExtra("User",user)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+    }
 
     /**
      * Метод проверяет правильность ввода и наличие пользователя в БД. Перебрасывает на mainActivity
@@ -61,15 +86,12 @@ class StartActivity : AppCompatActivity() {
             .addOnCompleteListener(this){task ->
                 if(task.isSuccessful){
 
-                    var id = task.result!!.user!!.uid.toString()
-                    var email = task.result!!.user!!.email.toString()
-                    var name = task.result!!.user!!.displayName.toString()
-                    var user = User(id, name, email, "0")
+                    val id = task.result!!.user!!.uid.toString()
+                    val email = task.result!!.user!!.email.toString()
+                    val name = task.result!!.user!!.displayName.toString()
+                    val user = User(id, name, email, "0")
 
-                    val intent = Intent(this,  MainActivity().javaClass)
-                    intent.putExtra("User",user)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
+                    updateUI(user)
 
                 }
                 else{

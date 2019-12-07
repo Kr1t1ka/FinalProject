@@ -71,11 +71,7 @@ class CoursesFragment() : Fragment() {
                  */
                 override fun onDataChange(data: DataSnapshot) {
 
-                    var isAdmin = data.child("isAdmin").value.toString()
-                    var name = data.child("UserName").value.toString()
-
-                    user.isAdmin = isAdmin
-                    user.UserName = name
+                    user.isAdmin = data.child("isAdmin").value.toString()
 
                     data.child("Courses").children.forEach { it ->
                         val id = it.child("ID").value.toString()

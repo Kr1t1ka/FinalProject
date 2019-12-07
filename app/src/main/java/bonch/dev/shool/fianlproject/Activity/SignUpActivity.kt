@@ -1,14 +1,18 @@
 package bonch.dev.shool.fianlproject.Activity
 
+import android.content.ContentValues
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -97,25 +101,32 @@ class SignUpActivity : AppCompatActivity() {
             .createUserWithEmailAndPassword(email!!, password!!)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful){
-                    val userId = mAuth!!.currentUser!!.uid
-                    val currentUserDb = mDatabaseReference!!.child((userId))
 
-                    currentUserDb.child("Name").setValue(name)
-                    currentUserDb.child("Password").setValue(password)
-                    currentUserDb.child("Email").setValue(email)
+                    val user = FirebaseAuth.getInstance().currentUser
+
+                    val profileUpdates = UserProfileChangeRequest.Builder()
+                        .setDisplayName(name)
+                        .build()
+
+                    val currentUserDb = mDatabaseReference!!.child((user?.uid.toString()))
                     currentUserDb.child("isAdmin").setValue(0)
 
-                    var id = task.result!!.user!!.uid.toString()
-                    var email = task.result!!.user!!.email.toString()
-                    var name = task.result!!.user!!.displayName.toString()
-                    var user = User(id, name, email,"0")
+                    user?.updateProfile(profileUpdates)
+                        ?.addOnCompleteListener {
 
-                    val intent = Intent(this,  MainActivity().javaClass)
-                    intent.putExtra("UserName",user)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            var id = user?.uid.toString()
+                            var email = user?.email.toString()
+                            var nameUser = user?.displayName.toString()
+                            var userLocal = User(id, nameUser, email, "0")
 
-                    startActivity(intent)
-                    finish()
+                            val intent = Intent(this, MainActivity().javaClass)
+                            intent.putExtra("User", userLocal)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+                            startActivity(intent)
+                            finish()
+                        }
+
                 }
                 else {
                     Toast.makeText(
