@@ -73,7 +73,7 @@ class StartActivity : AppCompatActivity() {
 
                 }
                 else{
-                    Toast.makeText(this, "Ошиббка авторизации",
+                    Toast.makeText(this, "Ошибка авторизации",
                         Toast.LENGTH_SHORT).show()
                 }
             }
