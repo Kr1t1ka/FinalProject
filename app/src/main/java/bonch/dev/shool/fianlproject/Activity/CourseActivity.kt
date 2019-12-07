@@ -55,24 +55,11 @@ class CourseActivity : AppCompatActivity() {
 
         if(admin == "1"){
             title.setEnabled(true)
-            /**
-             * тут еще должено быть переключение TextEdit на возможность редактирования
-             * по умолчанию должна стоять невозможность редактирования
-             */
+
         }else{
             buttonSlaidPlus.setVisibility(View.GONE)
-            title.setEnabled(true)
-
+            title.setEnabled(false)
         }
-
-        /**
-          тут сверху
-          Просто проверка на админа, проходишь ее и у тебя есть заветная кнопка, она правда ничего не делает.
-         Но это только пока...
-         (kritika)
-         теперь еще можно поменять заголовок с finalProgect на что то другое
-         админом быть круто!
-         */
 
         buttonSlaidPlus.setOnClickListener {
             addSlideBd()
@@ -129,7 +116,7 @@ class CourseActivity : AppCompatActivity() {
              */
             override fun onDataChange(data: DataSnapshot) {
                 slideList.clear()
-                
+
                 data.children.forEach { it ->
                     val id = it.key.toString()
 
