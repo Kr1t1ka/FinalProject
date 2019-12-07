@@ -36,7 +36,9 @@ class CourseActivity : AppCompatActivity() {
     private lateinit var course: Course
     private lateinit var buttonSlaidPlus: Button
     private lateinit var title: EditText
-    public lateinit var user : User
+    lateinit var user : User
+
+    private var slideList : MutableList<Slide> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +53,16 @@ class CourseActivity : AppCompatActivity() {
 
         var admin : String = user.isAdmin
 
-        if(admin == "DataSnapshot { key = isAdmin, value = 0 }"){
-            buttonSlaidPlus.setVisibility(View.GONE)
-            title.setEnabled(false)
+        if(admin == "1"){
+            title.setEnabled(true)
             /**
              * тут еще должено быть переключение TextEdit на возможность редактирования
              * по умолчанию должна стоять невозможность редактирования
              */
+        }else{
+            buttonSlaidPlus.setVisibility(View.GONE)
+            title.setEnabled(true)
+
         }
 
         /**
@@ -70,9 +75,7 @@ class CourseActivity : AppCompatActivity() {
          */
 
         buttonSlaidPlus.setOnClickListener {
-            /**
-             * тут по нажатию книпки долен появлятся новый слайд курса
-             */
+            addSlideBd()
         }
 
 
@@ -100,6 +103,15 @@ class CourseActivity : AppCompatActivity() {
 
     }
 
+    private fun addSlideBd(){
+        val mDatabase = FirebaseDatabase.getInstance()
+        val mDatabaseReference = mDatabase!!.reference.child("Kurses/${course.ID}/Slides")
+
+        val id = mDatabaseReference.push().setValue(Slide("", slideList.size, "", ""))
+        Log.d(ContentValues.TAG, id.toString())
+
+    }
+
     /**
      * функция устанавливает событие на бд курсов и создает список курсов
      */
@@ -109,7 +121,6 @@ class CourseActivity : AppCompatActivity() {
         //получаем ссылку для работы с базой данных
         val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/${courseID}/Slides")
 
-        var slideList : MutableList<Slide> = arrayListOf()
 
         mDatabaseReference.addValueEventListener(object : ValueEventListener {
 
@@ -117,15 +128,17 @@ class CourseActivity : AppCompatActivity() {
              * метод создаст новый список
              */
             override fun onDataChange(data: DataSnapshot) {
-
+                slideList.clear()
+                
                 data.children.forEach { it ->
                     val id = it.key.toString()
 
-                    val number = it.child("Number").value.toString()
-                    val body = it.child("Body").value.toString()
-                    val title = it.child("Title").value.toString()
+                    val number = it.child("number").value.toString()
+                    val body = it.child("body").value.toString()
+                    val title = it.child("title").value.toString()
 
-                    slideList.add(Slide(id, number.toInt(), title, body))
+                    if(number != null && body != null && title != null )
+                        slideList.add(Slide(id, number.toInt(), title, body))
                 }
 
 
