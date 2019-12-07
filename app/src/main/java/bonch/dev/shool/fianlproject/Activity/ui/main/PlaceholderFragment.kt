@@ -2,6 +2,7 @@ package bonch.dev.shool.fianlproject.Activity.ui.main
 
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,8 +46,8 @@ class PlaceholderFragment : Fragment() {
 
             val message = arguments!!.getString(EXTRA_MESSAGE)
 
-            var tvMessage: TextView = root!!.findViewById(R.id.section_label)
-            tvMessage.text = message
+            var tvMessage: EditText = root!!.findViewById(R.id.section_label)
+            tvMessage.setText(message)
 
             return root
     }
