@@ -1,22 +1,14 @@
 package bonch.dev.shool.fianlproject.Activity
 
 import android.content.ContentValues
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
 import bonch.dev.shool.fianlproject.Activity.ui.main.PlaceholderFragment
 import bonch.dev.shool.fianlproject.Activity.ui.main.SectionsPagerAdapter
 import bonch.dev.shool.fianlproject.R
@@ -27,7 +19,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.*
 
 class CourseActivity : AppCompatActivity() {
 
@@ -66,11 +57,8 @@ class CourseActivity : AppCompatActivity() {
         }
 
 
-
         addEventCourses(course.ID)
     }
-
-
 
 
     /**
