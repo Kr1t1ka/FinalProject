@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun intentOglav(course : Course) {
-        val intent = Intent(this, OglavlenieActivity().javaClass)
+        val intent = Intent(this, MyListActivity().javaClass)
         intent.putExtra("Course", course)
         intent.putExtra("User", user)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
