@@ -65,16 +65,17 @@ class CoursesFragment() : Fragment() {
 
         mDatabaseReference
             .addValueEventListener(object : ValueEventListener {
-
                 /**если данные в БД меняются
                  * метод создаст список ключей курсов, добавленных пользователем
                  */
                 override fun onDataChange(data: DataSnapshot) {
+                    courses.clear()
+                    key.clear()
 
                     user.isAdmin = data.child("isAdmin").value.toString()
 
                     data.child("Courses").children.forEach { it ->
-                        val id = it.child("ID").value.toString()
+                        val id = it.value.toString()
                         key.add(id)
                     }
 
@@ -121,7 +122,7 @@ class CoursesFragment() : Fragment() {
 
                                 }
 
-                                var adapter = CoursesAdapter(courses)
+                                var adapter = CoursesAdapter(courses, false)
                                 coursesRecyclerView.adapter = adapter
                             }
 

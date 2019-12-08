@@ -1,7 +1,9 @@
 package bonch.dev.shool.fianlproject.Activity
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -9,7 +11,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.Course
+import bonch.dev.shool.fianlproject.moduls.data.Theme
 import bonch.dev.shool.fianlproject.moduls.data.User
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +43,60 @@ class MainActivity : AppCompatActivity() {
 
 
     fun intentCourses(course : Course) {
+        //получаем точку входа для базы данных
+        val mFirebaseDatabase = FirebaseDatabase.getInstance()
+        //получаем ссылку для работы с базой данных
+        val mDatabaseReference = mFirebaseDatabase.getReference("Users/" +
+                "${user.ID}/Courses")
 
+        mDatabaseReference
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                /**
+                 * по значению ищем добавляемый курс в списке добавленных. если находим, вылетаем
+                 * из метода
+                 */
+                override fun onDataChange(data: DataSnapshot) {
+
+                    data.children.forEach { it ->
+                        if (it.value.toString() == course.ID)
+                            return
+                    }
+                    mDatabaseReference.push().setValue(course.ID)
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.d(ContentValues.TAG, p0.message)
+                }
+            })
+    }
+
+    fun removeCourses(course : Course) {
+        //получаем точку входа для базы данных
+        val mFirebaseDatabase = FirebaseDatabase.getInstance()
+        //получаем ссылку для работы с базой данных
+        val mDatabaseReference = mFirebaseDatabase.getReference(
+            "Users/" +
+                    "${user.ID}/Courses"
+        )
+
+        mDatabaseReference
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                /**
+                 * по значению ищем курс для удаления... по моему это плохо
+                 */
+                override fun onDataChange(data: DataSnapshot) {
+
+                    data.children.forEach { it ->
+                        if (it.value.toString() == course.ID)
+                            mDatabaseReference.child(it.key.toString()).removeValue()
+                    }
+
+                }
+
+                override fun onCancelled(p0: DatabaseError) {
+                    Log.d(ContentValues.TAG, p0.message)
+                }
+            })
     }
 
     fun intentOglav(course : Course) {
