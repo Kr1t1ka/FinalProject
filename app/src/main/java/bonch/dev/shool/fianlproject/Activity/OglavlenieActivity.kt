@@ -13,6 +13,5 @@ class OglavlenieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.oglavlenie_activity)
 
-
     }
 }
