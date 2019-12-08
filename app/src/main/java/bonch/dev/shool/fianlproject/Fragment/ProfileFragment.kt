@@ -1,15 +1,17 @@
 package bonch.dev.shool.fianlproject.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import bonch.dev.shool.fianlproject.Activity.MainActivity
+import bonch.dev.shool.fianlproject.Activity.StartActivity
 
 import bonch.dev.shool.fianlproject.R
-
-
+import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfileFragment : Fragment() {
@@ -30,9 +32,9 @@ class ProfileFragment : Fragment() {
 
         exitButton = view.findViewById(R.id.button2)
         exitButton.setOnClickListener {
-            /**
-             * сдесь должен быть выход из акаунат
-             */
+            FirebaseAuth.getInstance().signOut();
+
+            startActivity(Intent(context,  StartActivity().javaClass))
         }
 
         /**
