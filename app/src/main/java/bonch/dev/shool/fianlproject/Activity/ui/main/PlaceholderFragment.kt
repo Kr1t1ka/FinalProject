@@ -49,11 +49,12 @@ class PlaceholderFragment : Fragment() {
         val root: View? = inflater.inflate(R.layout.course_fragment, container, false)
 
         val admin: String = (context as CourseActivity).user.isAdmin
+        val theme: String = (context as CourseActivity).theme.ID
 
 
         val slide = arguments!!.getParcelable<Slide>(EXTRA_MESSAGE)
-        buttonSave = root!!.findViewById(bonch.dev.shool.fianlproject.R.id.buttom_save)
-        buttonDel = root!!.findViewById(bonch.dev.shool.fianlproject.R.id.buttom_del)
+        buttonSave = root!!.findViewById(R.id.buttom_save)
+        buttonDel = root!!.findViewById(R.id.buttom_del)
 
         val tvMessage: EditText = root.findViewById(R.id.section_label)
         val slaideName: EditText = root.findViewById(R.id.slid_name)
@@ -67,11 +68,16 @@ class PlaceholderFragment : Fragment() {
             val course = (context as CourseActivity).course
 
             val mFirebaseDatabase = FirebaseDatabase.getInstance()
-            val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/${course.ID}/Slides/${slide.ID}")
+            val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/" +
+                    "${course.ID}/theme/${theme}/Slides/${slide.ID}")
 
             buttonSave.setOnClickListener {
                 mDatabaseReference.child("/body").setValue(tvMessage.text.toString())
                 mDatabaseReference.child("/title").setValue(slaideName.text.toString())
+
+                mFirebaseDatabase.getReference("Kurses/" +
+                        "${course.ID}/theme/${theme}").child("title").setValue(
+                    (context as CourseActivity).title.text.toString())
             }
 
             buttonDel.setOnClickListener {
