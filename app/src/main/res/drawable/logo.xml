@@ -15,8 +15,50 @@
 
         <path
             android:pathData="M0 0V173H173V0"
-            android:fillColor="#C4C4C4"
+            android:fillColor="#3D0000"
             />
+
+        <group
+            android:translateX="0.682"
+            android:translateY="0"
+            android:pivotX="86.5"
+            android:pivotY="86.5"
+            android:scaleX="0.728"
+            android:scaleY="0.728"
+            android:rotation="90"
+            >
+
+            <path
+                android:pathData="M0 0V173H173V0"
+                >
+
+                <aapt:attr name="android:fillColor">
+
+                    <gradient
+                        android:type="linear"
+                        android:startX="43.25"
+                        android:startY="86.5"
+                        android:endX="129.75"
+                        android:endY="86.5"
+                        >
+
+                        <item
+                            android:color="#FF0000"
+                            android:offset="0"
+                            />
+
+                        <item
+                            android:color="#003D0000"
+                            android:offset="1"
+                            />
+
+                    </gradient>
+
+                </aapt:attr>
+
+            </path>
+
+        </group>
 
     </group>
 
