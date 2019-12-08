@@ -36,7 +36,9 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_glav"
+
+        android:id="@+id/recycle_theme"
+
         android:layout_width="409dp"
         android:layout_height="593dp"
         android:layout_marginStart="5dp"
@@ -49,13 +51,12 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <Button
-        android:id="@+id/add_glava"
+
+        android:id="@+id/bAddTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Добавить главу"
-        android:background="#C4C4C4"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 

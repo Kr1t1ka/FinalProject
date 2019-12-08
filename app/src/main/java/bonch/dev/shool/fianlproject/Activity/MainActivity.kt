@@ -36,13 +36,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun intentCourses(course : Course) {
-        val intent = Intent(this, CourseActivity().javaClass)
-        intent.putExtra("Course", course)
-        intent.putExtra("User", user)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
-        startActivity(intent)
-        finish()
     }
 
     fun intentOglav(course : Course) {
