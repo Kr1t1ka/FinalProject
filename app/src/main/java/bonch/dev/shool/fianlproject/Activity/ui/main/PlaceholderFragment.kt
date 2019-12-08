@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import bonch.dev.shool.fianlproject.Activity.CourseActivity
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.data.Slide
 import bonch.dev.shool.fianlproject.moduls.data.User
+import com.google.firebase.database.FirebaseDatabase
 
 
 class PlaceholderFragment : Fragment() {
@@ -18,15 +21,14 @@ class PlaceholderFragment : Fragment() {
      */
 
     private lateinit var buttonSave: Button
-    lateinit var user : User
 
     companion object {
-        fun newInstance(message: String): PlaceholderFragment {
+        fun newInstance(slide: Slide): PlaceholderFragment {
 
             val f = PlaceholderFragment()
             val bdl = Bundle(1)
 
-            bdl.putString(EXTRA_MESSAGE, message)
+            bdl.putParcelable(EXTRA_MESSAGE, slide)
             f.setArguments(bdl)
 
             return f
@@ -43,23 +45,33 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-            var root: View? = inflater.inflate(R.layout.course_fragment, container, false)
+        var root: View? = inflater.inflate(R.layout.course_fragment, container, false)
 
-            var admin : String = user.isAdmin
+        var admin: String = (context as CourseActivity).user.isAdmin
 
 
+        val slide = arguments!!.getParcelable<Slide>(EXTRA_MESSAGE)
+        buttonSave = root!!.findViewById(bonch.dev.shool.fianlproject.R.id.buttom_save)
 
-            val message = arguments!!.getString(EXTRA_MESSAGE)
-            buttonSave = root!!.findViewById(bonch.dev.shool.fianlproject.R.id.buttom_save)
+        val tvMessage: EditText = root!!.findViewById(R.id.section_label)
+        val slaideName: EditText = root!!.findViewById(R.id.slid_name)
+        tvMessage.setText(slide!!.Body)
+        slaideName.setText(slide!!.Title)
 
-            var tvMessage: EditText = root!!.findViewById(R.id.section_label)
-        var slaideName: EditText = root!!.findViewById(R.id.slid_name)
-            tvMessage.setText(message)
-
-        if(admin == "1"){
+        if (admin == "1") {
             tvMessage.setEnabled(true)
             slaideName.setEnabled(true)
-        }else{
+
+            buttonSave.setOnClickListener {
+                val course = (context as CourseActivity).course
+
+                val mFirebaseDatabase = FirebaseDatabase.getInstance()
+                val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/${course.ID}/Slides/${slide.ID}")
+
+                mDatabaseReference.child("/body").setValue(tvMessage.text.toString())
+                mDatabaseReference.child("/title").setValue(slaideName.text.toString())
+            }
+        } else {
             buttonSave.setVisibility(View.GONE)
             tvMessage.setEnabled(false)
             slaideName.setEnabled(false)
@@ -68,6 +80,6 @@ class PlaceholderFragment : Fragment() {
 
 
 
-            return root
+        return root
     }
 }

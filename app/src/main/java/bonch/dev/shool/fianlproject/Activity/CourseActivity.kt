@@ -24,7 +24,7 @@ class CourseActivity : AppCompatActivity() {
 
     private lateinit var viewpager: ViewPager
     private lateinit var tabs: TabLayout
-    private lateinit var course: Course
+    lateinit var course: Course
     private lateinit var buttonSlaidPlus: Button
     private lateinit var buttonSave: Button
     private lateinit var title: EditText
@@ -75,7 +75,7 @@ class CourseActivity : AppCompatActivity() {
         val adapter = SectionsPagerAdapter(supportFragmentManager)
 
         for (slide in slideList){
-            adapter.addFragment(PlaceholderFragment.newInstance(slide.Body), slide.Title)
+            adapter.addFragment(PlaceholderFragment.newInstance(slide), slide.Title)
         }
 
         viewpager!!.adapter = adapter
