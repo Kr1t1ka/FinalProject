@@ -46,18 +46,19 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var root: View? = inflater.inflate(R.layout.course_fragment, container, false)
+        val root: View? = inflater.inflate(R.layout.course_fragment, container, false)
 
-        var admin: String = (context as CourseActivity).user.isAdmin
+        val admin: String = (context as CourseActivity).user.isAdmin
 
 
         val slide = arguments!!.getParcelable<Slide>(EXTRA_MESSAGE)
         buttonSave = root!!.findViewById(bonch.dev.shool.fianlproject.R.id.buttom_save)
+        buttonDel = root!!.findViewById(bonch.dev.shool.fianlproject.R.id.buttom_del)
 
-        val tvMessage: EditText = root!!.findViewById(R.id.section_label)
-        val slaideName: EditText = root!!.findViewById(R.id.slid_name)
+        val tvMessage: EditText = root.findViewById(R.id.section_label)
+        val slaideName: EditText = root.findViewById(R.id.slid_name)
         tvMessage.setText(slide!!.Body)
-        slaideName.setText(slide!!.Title)
+        slaideName.setText(slide.Title)
 
         if (admin == "1") {
             tvMessage.setEnabled(true)

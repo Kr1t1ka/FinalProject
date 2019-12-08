@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        user = intent.getParcelableExtra("User")
+        user = intent.getParcelableExtra("User")!!
 
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        AppBarConfiguration(
             setOf(
                 R.id.navigation_courses, R.id.navigation_store, R.id.navigation_profile, R.id.navigation_ficha
             )
