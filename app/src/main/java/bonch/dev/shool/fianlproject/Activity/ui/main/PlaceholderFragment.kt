@@ -5,23 +5,31 @@ import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import bonch.dev.shool.fianlproject.Activity.CourseActivity
 import bonch.dev.shool.fianlproject.R
-
+import bonch.dev.shool.fianlproject.moduls.data.Slide
+import bonch.dev.shool.fianlproject.moduls.data.User
+import com.google.firebase.database.FirebaseDatabase
 
 
 class PlaceholderFragment : Fragment() {
     /**
      * служит для загрузки текста слайда в фрагмент
      */
+
+    private lateinit var buttonSave: Button
+    private lateinit var buttonDel: Button
+
     companion object {
-        fun newInstance(message: String): PlaceholderFragment {
+        fun newInstance(slide: Slide): PlaceholderFragment {
 
             val f = PlaceholderFragment()
             val bdl = Bundle(1)
 
-            bdl.putString(EXTRA_MESSAGE, message)
+            bdl.putParcelable(EXTRA_MESSAGE, slide)
             f.setArguments(bdl)
 
             return f
@@ -38,14 +46,46 @@ class PlaceholderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-            var root: View? = inflater.inflate(R.layout.course_fragment, container, false);
+        var root: View? = inflater.inflate(R.layout.course_fragment, container, false)
 
-            val message = arguments!!.getString(EXTRA_MESSAGE)
+        var admin: String = (context as CourseActivity).user.isAdmin
 
-            var tvMessage: EditText = root!!.findViewById(R.id.section_label)
-            tvMessage.setText(message)
 
-            return root
+        val slide = arguments!!.getParcelable<Slide>(EXTRA_MESSAGE)
+        buttonSave = root!!.findViewById(bonch.dev.shool.fianlproject.R.id.buttom_save)
+
+        val tvMessage: EditText = root!!.findViewById(R.id.section_label)
+        val slaideName: EditText = root!!.findViewById(R.id.slid_name)
+        tvMessage.setText(slide!!.Body)
+        slaideName.setText(slide!!.Title)
+
+        if (admin == "1") {
+            tvMessage.setEnabled(true)
+            slaideName.setEnabled(true)
+
+            val course = (context as CourseActivity).course
+
+            val mFirebaseDatabase = FirebaseDatabase.getInstance()
+            val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/${course.ID}/Slides/${slide.ID}")
+
+            buttonSave.setOnClickListener {
+                mDatabaseReference.child("/body").setValue(tvMessage.text.toString())
+                mDatabaseReference.child("/title").setValue(slaideName.text.toString())
+            }
+
+            buttonDel.setOnClickListener {
+                mDatabaseReference.removeValue()
+            }
+
+        } else {
+            buttonSave.visibility = View.GONE
+            tvMessage.isEnabled = false
+            slaideName.isEnabled = false
+            buttonDel.visibility = View.GONE
+        }
+
+
+
+        return root
     }
-
 }
