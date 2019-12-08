@@ -21,6 +21,7 @@ class PlaceholderFragment : Fragment() {
      */
 
     private lateinit var buttonSave: Button
+    private lateinit var buttonDel: Button
 
     companion object {
         fun newInstance(slide: Slide): PlaceholderFragment {
@@ -62,20 +63,25 @@ class PlaceholderFragment : Fragment() {
             tvMessage.setEnabled(true)
             slaideName.setEnabled(true)
 
+            val course = (context as CourseActivity).course
+
+            val mFirebaseDatabase = FirebaseDatabase.getInstance()
+            val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/${course.ID}/Slides/${slide.ID}")
+
             buttonSave.setOnClickListener {
-                val course = (context as CourseActivity).course
-
-                val mFirebaseDatabase = FirebaseDatabase.getInstance()
-                val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/${course.ID}/Slides/${slide.ID}")
-
                 mDatabaseReference.child("/body").setValue(tvMessage.text.toString())
                 mDatabaseReference.child("/title").setValue(slaideName.text.toString())
             }
-        } else {
-            buttonSave.setVisibility(View.GONE)
-            tvMessage.setEnabled(false)
-            slaideName.setEnabled(false)
 
+            buttonDel.setOnClickListener {
+                mDatabaseReference.removeValue()
+            }
+
+        } else {
+            buttonSave.visibility = View.GONE
+            tvMessage.isEnabled = false
+            slaideName.isEnabled = false
+            buttonDel.visibility = View.GONE
         }
 
 
