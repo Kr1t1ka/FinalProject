@@ -41,7 +41,6 @@ class CourseActivity : AppCompatActivity() {
         title = findViewById(R.id.title)
         course = intent.getParcelableExtra("Course")
         buttonSlaidPlus = findViewById(R.id.plus_slaid)
-        buttonSave = findViewById(R.id.buttom_save)
         user = intent.getParcelableExtra("User")
 
         var admin : String = user.isAdmin
@@ -51,7 +50,6 @@ class CourseActivity : AppCompatActivity() {
 
         }else{
             buttonSlaidPlus.setVisibility(View.GONE)
-            buttonSave.setVisibility(View.GONE)
             title.setEnabled(false)
         }
 
@@ -62,9 +60,7 @@ class CourseActivity : AppCompatActivity() {
         /**
          * кнопка save, по нажатию сто то происходит
          */
-        buttonSave.setOnClickListener {
 
-        }
 
 
         addEventCourses(course.ID)

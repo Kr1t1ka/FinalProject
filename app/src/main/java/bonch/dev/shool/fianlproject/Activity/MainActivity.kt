@@ -44,4 +44,14 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    fun intentOglav(course : Course) {
+        val intent = Intent(this, OglavlenieActivity().javaClass)
+        intent.putExtra("Course", course)
+        intent.putExtra("User", user)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        startActivity(intent)
+        finish()
+    }
 }

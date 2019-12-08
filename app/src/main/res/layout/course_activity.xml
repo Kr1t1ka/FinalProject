@@ -50,14 +50,4 @@
         android:textAllCaps="false"
         android:visibility="visible" />
 
-    <Button
-        android:id="@+id/buttom_save"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_gravity="bottom"
-        android:layout_margin="@dimen/fab_margin"
-        android:text="save"
-        android:textAllCaps="false"
-        android:visibility="visible" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

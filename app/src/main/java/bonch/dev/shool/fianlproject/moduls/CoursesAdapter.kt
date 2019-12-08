@@ -22,7 +22,7 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
 
-        val view= LayoutInflater.from(parent.context).inflate(R.layout.courses_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.courses_item, parent, false)
         this.parent = parent
 
         return MessageHolder(view)
@@ -34,9 +34,14 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
         holder.bind(position)
 
         var button = holder.itemView.findViewById<ImageButton>(R.id.button3)
+        var button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
 
         button.setOnClickListener {//вешаем онклик на кнопку курса в ресайклере.
             (parent.context as MainActivity).intentCourses(courseList[position])
+        }
+
+        button_oglav.setOnClickListener {//вешаем онклик на кнопку курса в ресайклере.
+            (parent.context as MainActivity).intentOglav(courseList[position])
         }
     }
 

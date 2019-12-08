@@ -33,4 +33,13 @@
     <string name="password">Пароль</string>
     <string name="singIn">Вход</string>
     <string name="registration">Регестрация</string>
+
+    <string-array name="catlist">
+        <item>Барсик</item>
+        <item>Мурзик</item>
+        <item>Васька</item>
+        <item>Рыжик</item>
+    </string-array>
+
+
 </resources>
