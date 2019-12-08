@@ -39,11 +39,11 @@ class CourseActivity : AppCompatActivity() {
         tabs = findViewById(R.id.tabs)
         viewpager = findViewById(R.id.view_pager)
         title = findViewById(R.id.title)
-        course = intent.getParcelableExtra("Course")
+        course = intent.getParcelableExtra("Course")!!
         buttonSlaidPlus = findViewById(R.id.plus_slaid)
-        user = intent.getParcelableExtra("User")
+        user = intent.getParcelableExtra("User")!!
 
-        var admin : String = user.isAdmin
+        val admin : String = user.isAdmin
 
         if(admin == "1"){
             title.setEnabled(true)
@@ -78,15 +78,15 @@ class CourseActivity : AppCompatActivity() {
             adapter.addFragment(PlaceholderFragment.newInstance(slide), slide.Title)
         }
 
-        viewpager!!.adapter = adapter
+        viewpager.adapter = adapter
 
-        tabs!!.setupWithViewPager(viewpager)
+        tabs.setupWithViewPager(viewpager)
 
     }
 
     private fun addSlideBd(){
         val mDatabase = FirebaseDatabase.getInstance()
-        val mDatabaseReference = mDatabase!!.reference.child("Kurses/${course.ID}/Slides")
+        val mDatabaseReference = mDatabase.reference.child("Kurses/${course.ID}/Slides")
 
         val id = mDatabaseReference.push().setValue(Slide("", slideList.size, "", ""))
         Log.d(ContentValues.TAG, id.toString())
@@ -118,7 +118,7 @@ class CourseActivity : AppCompatActivity() {
                     val body = it.child("body").value.toString()
                     val title = it.child("title").value.toString()
 
-                    if(number != null && body != null && title != null )
+                    if(number != null && body != null && title != null)
                         slideList.add(Slide(id, number.toInt(), title, body))
                 }
 

@@ -98,7 +98,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
         mAuth!!
-            .createUserWithEmailAndPassword(email!!, password!!)
+            .createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful){
 
@@ -114,10 +114,10 @@ class SignUpActivity : AppCompatActivity() {
                     user?.updateProfile(profileUpdates)
                         ?.addOnCompleteListener {
 
-                            var id = user?.uid.toString()
-                            var email = user?.email.toString()
-                            var nameUser = user?.displayName.toString()
-                            var userLocal = User(id, nameUser, email, "0")
+                            val id = user.uid.toString()
+                            val email = user.email.toString()
+                            val nameUser = user.displayName.toString()
+                            val userLocal = User(id, nameUser, email, "0")
 
                             val intent = Intent(this, MainActivity().javaClass)
                             intent.putExtra("User", userLocal)

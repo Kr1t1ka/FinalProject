@@ -31,7 +31,7 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     override fun getItemCount(): Int = courseList.size
 
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
-        holder.bind(position)
+        holder.bind()
 
         var button = holder.itemView.findViewById<ImageButton>(R.id.button3)
         var button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
@@ -51,9 +51,6 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
 
     inner class MessageHolder(view: View) : RecyclerView.ViewHolder(view){
 
-        fun bind(position: Int){
-
-        }
-
+        fun bind() {}
     }
 }
