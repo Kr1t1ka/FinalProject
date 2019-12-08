@@ -14,23 +14,25 @@ import bonch.dev.shool.fianlproject.Activity.ui.main.SectionsPagerAdapter
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.Course
 import bonch.dev.shool.fianlproject.moduls.data.Slide
+import bonch.dev.shool.fianlproject.moduls.data.Theme
 import bonch.dev.shool.fianlproject.moduls.data.User
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 
 class CourseActivity : AppCompatActivity() {
 
     private lateinit var viewpager: ViewPager
     private lateinit var tabs: TabLayout
     lateinit var course: Course
+    lateinit var theme: Theme
     private lateinit var buttonSlaidPlus: Button
     private lateinit var buttonSave: Button
-    private lateinit var title: EditText
+    lateinit var title: EditText
     lateinit var user : User
 
     private var slideList : MutableList<Slide> = arrayListOf()
+
+    val mFirebaseDatabase = FirebaseDatabase.getInstance()
+    private lateinit var mDatabaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,27 +42,28 @@ class CourseActivity : AppCompatActivity() {
         viewpager = findViewById(R.id.view_pager)
         title = findViewById(R.id.title)
         course = intent.getParcelableExtra("Course")!!
+        theme = intent.getParcelableExtra("Theme")!!
         buttonSlaidPlus = findViewById(R.id.plus_slaid)
         user = intent.getParcelableExtra("User")!!
+
+        mDatabaseReference =  mFirebaseDatabase.getReference("Kurses/" +
+                "${course.ID}/theme/${theme.ID}/Slides")
+
+        title.setText(theme.Title)
 
         val admin : String = user.isAdmin
 
         if(admin == "1"){
-            title.setEnabled(true)
+            title.isEnabled = true
 
         }else{
-            buttonSlaidPlus.setVisibility(View.GONE)
-            title.setEnabled(false)
+            buttonSlaidPlus.visibility = View.GONE
+            title.isEnabled = false
         }
 
         buttonSlaidPlus.setOnClickListener {
             addSlideBd()
         }
-
-        /**
-         * кнопка save, по нажатию сто то происходит
-         */
-
 
 
         addEventCourses(course.ID)
@@ -85,9 +88,6 @@ class CourseActivity : AppCompatActivity() {
     }
 
     private fun addSlideBd(){
-        val mDatabase = FirebaseDatabase.getInstance()
-        val mDatabaseReference = mDatabase.reference.child("Kurses/${course.ID}/Slides")
-
         val id = mDatabaseReference.push().setValue(Slide("", slideList.size, "", ""))
         Log.d(ContentValues.TAG, id.toString())
 
@@ -97,10 +97,7 @@ class CourseActivity : AppCompatActivity() {
      * функция устанавливает событие на бд курсов и создает список курсов
      */
     private fun addEventCourses(courseID: String){
-        //получаем точку входа для базы данных
-        val mFirebaseDatabase = FirebaseDatabase.getInstance()
-        //получаем ссылку для работы с базой данных
-        val mDatabaseReference = mFirebaseDatabase.getReference("Kurses/${courseID}/Slides")
+
 
 
         mDatabaseReference.addValueEventListener(object : ValueEventListener {

@@ -15,3 +15,7 @@ data class Course (val ID: String,
                    val Description : String,
                    val Price: Float) : Parcelable
 
+@Parcelize
+data class Theme(val ID: String,
+                 var Title: String) : Parcelable
+
