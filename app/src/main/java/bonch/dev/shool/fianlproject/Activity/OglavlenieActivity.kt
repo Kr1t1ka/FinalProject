@@ -3,7 +3,7 @@ package bonch.dev.shool.fianlproject.Activity
 import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -30,9 +30,11 @@ class OglavlenieActivity : AppCompatActivity() {
     private val mFirebaseDatabase = FirebaseDatabase.getInstance()
     private lateinit var  mDatabaseReference : DatabaseReference
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.oglavlenie_activity)
+
 
         user = intent.getParcelableExtra("User")!!
         course = intent.getParcelableExtra("Course")!!
@@ -59,6 +61,7 @@ class OglavlenieActivity : AppCompatActivity() {
 
     private fun addTheme(){
         mDatabaseReference.push().setValue(Theme("", ""))
+
     }
 
     fun deleteTheme(theme: Theme){

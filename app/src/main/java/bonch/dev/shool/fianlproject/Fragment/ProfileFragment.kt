@@ -12,12 +12,15 @@ import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.Activity.StartActivity
 
 import bonch.dev.shool.fianlproject.R
+import bonch.dev.shool.fianlproject.moduls.data.User
 import com.google.firebase.auth.FirebaseAuth
 
 
 class ProfileFragment : Fragment() {
 
     private lateinit var exitButton : ImageButton
+    private lateinit var user: User
+    private lateinit var addCurses: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +33,15 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view = inflater.inflate(R.layout.fragment_profile, container, false)
-
+        user = (context as MainActivity).user
         exitButton = view.findViewById(R.id.button2)
+        addCurses = view.findViewById(R.id.add_cuses)
+        val admin : String = user.isAdmin
+        if(admin == "1"){
+            addCurses.setVisibility(View.VISIBLE)
+        }else{
+            addCurses.setVisibility(View.GONE)
+        }
         exitButton.setOnClickListener {
             FirebaseAuth.getInstance().signOut();
 
@@ -41,6 +51,7 @@ class ProfileFragment : Fragment() {
         /**
          * TODO: из класса user в тул бар транслировать имя пользователя
          * и еще доделать профиль надо
+         *
          */
 
         return view

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".Fragment.CoursesFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,6 +15,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/pink"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -26,7 +28,7 @@
             android:padding="@dimen/appbar_padding"
             android:text="Мои курсы"
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textColorHighlight="#000000"
             android:textColorHint="#FFFFFF"
             android:textColorLink="#FFFFFF"
