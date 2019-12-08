@@ -15,10 +15,13 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
 
     var courseList : MutableList<Course> = arrayListOf()
     private lateinit var parent: ViewGroup
+    private var addOdRemove: Boolean = true
 
-    constructor(list: MutableList<Course>): this(){
+    constructor(list: MutableList<Course>, addOdRemove: Boolean): this(){
         courseList = list
+        this.addOdRemove = addOdRemove
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
 
@@ -37,12 +40,17 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
         val button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
 
         button.setOnClickListener {//вешаем онклик на кнопку курса в ресайклере.
-            (parent.context as MainActivity).intentCourses(courseList[position])
+            if(addOdRemove)
+                (parent.context as MainActivity).intentCourses(courseList[position])
+            else
+                (parent.context as MainActivity).removeCourses(courseList[position])
+
         }
 
         button_oglav.setOnClickListener {//вешаем онклик на кнопку оглавление в ресайклере.
             (parent.context as MainActivity).intentOglav(courseList[position])
         }
+
     }
 
     override fun getItemViewType(position: Int): Int {

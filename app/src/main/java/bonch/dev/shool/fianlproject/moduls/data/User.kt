@@ -13,4 +13,3 @@ data class User( val ID: String,
                  var UserName: String,
                  val email: String,
                  var isAdmin: String): Parcelable
-
