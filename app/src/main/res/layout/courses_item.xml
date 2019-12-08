@@ -22,10 +22,22 @@
             android:id="@+id/image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
             android:background="#1C1C1C"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/cardview_1"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageButton
+            android:id="@+id/ibSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#1C1C1C"
+            app:layout_constraintBottom_toTopOf="@+id/image_button"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/cardview_1"
             tools:ignore="VectorDrawableCompat" />
@@ -54,7 +66,7 @@
             app:srcCompat="@drawable/image_on_cardview"
             tools:ignore="VectorDrawableCompat" />
 
-        <TextView
+        <EditText
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
