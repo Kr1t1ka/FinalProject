@@ -80,7 +80,7 @@ class StoreFragment : Fragment() {
 
                 }
 
-                var adapter = CoursesAdapter(courses)
+                var adapter = CoursesAdapter(courses, true)
                 storeRecyclerView.adapter = adapter
             }
 

@@ -38,7 +38,7 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
 
         val tvName = holder.itemView.findViewById<TextView>(R.id.textView2)
         tvName.text = themeList[position].Title
-        
+
         val button = holder.itemView.findViewById<ImageButton>(R.id.button3)
 
         val button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
