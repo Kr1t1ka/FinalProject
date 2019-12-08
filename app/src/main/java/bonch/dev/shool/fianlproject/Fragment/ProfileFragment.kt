@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.Activity.StartActivity
 
@@ -16,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var exitButton : Button
+    private lateinit var exitButton : ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
