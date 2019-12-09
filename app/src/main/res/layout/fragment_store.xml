@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="Добавить курс"
         app:layout_constraintBottom_toBottomOf="@+id/recycle_store"
         app:layout_constraintStart_toStartOf="@+id/recycle_store" />
 
