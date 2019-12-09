@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.User
@@ -18,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var RegestrtionButton : Button
+    private lateinit var RegestrtionButton : ImageButton
     private lateinit var tvName : EditText
     private lateinit var tvPassword : EditText
     private lateinit var tvConfirmationPassword : EditText
@@ -32,7 +33,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_up_activity)
 
-        RegestrtionButton = findViewById(R.id.button)
+        RegestrtionButton = findViewById(R.id.imageButton)
 
         initialize()
     }
