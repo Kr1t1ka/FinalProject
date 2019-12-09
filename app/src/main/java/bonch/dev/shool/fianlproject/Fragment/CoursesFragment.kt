@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.shool.fianlproject.Activity.MainActivity
@@ -106,23 +105,23 @@ class CoursesFragment() : Fragment() {
 
                                     if (key.contains(id))
                                     {
-                                        val name = it.child("Name").value.toString()
-                                        val price = it.child("Price").value.toString()
-                                        val description = it.child("Description").value.toString()
+                                        val name = it.child("name").value.toString()
+                                        val price = it.child("price").value.toString()
+                                        val description = it.child("description").value.toString()
 
                                         courses.add(
                                             Course(
                                                 id,
                                                 name,
                                                 description,
-                                                price.toFloat()
+                                                price.toInt()
                                             )
                                         )
                                     }
 
                                 }
 
-                                var adapter = CoursesAdapter(courses, false)
+                                var adapter = CoursesAdapter(courses, false, false)
                                 coursesRecyclerView.adapter = adapter
                             }
 

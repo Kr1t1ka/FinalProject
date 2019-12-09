@@ -70,7 +70,25 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    fun removeCourses(course : Course) {
+    fun saveCourse(course:Course){
+        //получаем точку входа для базы данных
+        val mFirebaseDatabase = FirebaseDatabase.getInstance()
+        //получаем ссылку для работы с базой данных
+        val mDatabaseReference = mFirebaseDatabase.getReference("Kurses")
+
+        mDatabaseReference.child(course.ID).child("name").setValue(course.Name)
+    }
+
+    fun removeCourse(course:Course){
+        //получаем точку входа для базы данных
+        val mFirebaseDatabase = FirebaseDatabase.getInstance()
+        //получаем ссылку для работы с базой данных
+        val mDatabaseReference = mFirebaseDatabase.getReference("Kurses")
+
+        mDatabaseReference.child(course.ID).removeValue()
+    }
+
+    fun removeCoursesUsers(course : Course) {
         //получаем точку входа для базы данных
         val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
