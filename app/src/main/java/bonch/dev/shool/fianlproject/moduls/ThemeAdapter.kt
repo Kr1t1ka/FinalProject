@@ -27,7 +27,7 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.courses_item, parent, false)
         this.parent = parent
 
         return MessageHolder(view)
@@ -38,9 +38,9 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
         holder.bind()
 
-        val tvName = holder.itemView.findViewById<TextView>(R.id.textView2)
-        tvName.text = themeList[position].Title
-        val etName = holder.itemView.findViewById<EditText>(R.id.textView2)
+
+        val etName = holder.itemView.findViewById<EditText>(R.id.etName)
+        etName.setText(themeList[position].Title)
         val button = holder.itemView.findViewById<ImageButton>(R.id.button3)
         val bRemove = holder.itemView.findViewById<ImageButton>(R.id.ibRemove)
         val bSave = holder.itemView.findViewById<ImageButton>(R.id.ibSave)
@@ -73,9 +73,6 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
 
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return 1
-    }
 
     inner class MessageHolder(view: View) : RecyclerView.ViewHolder(view){
 

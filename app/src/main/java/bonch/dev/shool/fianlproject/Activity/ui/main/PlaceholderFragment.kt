@@ -54,7 +54,7 @@ class PlaceholderFragment : Fragment() {
 
         val slide = arguments!!.getParcelable<Slide>(EXTRA_MESSAGE)
         buttonSave = root!!.findViewById(R.id.buttom_save)
-        buttonDel = root!!.findViewById(R.id.buttom_del)
+        buttonDel = root.findViewById(R.id.buttom_del)
 
         val tvMessage: EditText = root.findViewById(R.id.section_label)
         val slaideName: EditText = root.findViewById(R.id.slid_name)
