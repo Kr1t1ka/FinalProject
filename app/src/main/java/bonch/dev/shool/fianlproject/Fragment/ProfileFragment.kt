@@ -6,9 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
+import androidx.navigation.fragment.findNavController
 import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.Activity.StartActivity
 import bonch.dev.shool.fianlproject.Fragment.change.MailFragment
@@ -17,6 +16,7 @@ import bonch.dev.shool.fianlproject.Fragment.change.PasswordFragment
 
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.User
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 
 
