@@ -3,10 +3,7 @@ package bonch.dev.shool.fianlproject.moduls
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.shool.fianlproject.Activity.CourseActivity
 import bonch.dev.shool.fianlproject.Activity.MainActivity
@@ -45,6 +42,14 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
         val bRemove = holder.itemView.findViewById<ImageButton>(R.id.ibRemove)
         val bSave = holder.itemView.findViewById<ImageButton>(R.id.ibSave)
         val button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
+        val textview = holder.itemView.findViewById<TextView>(R.id.textView3)
+        val textview1 = holder.itemView.findViewById<TextView>(R.id.textView5)
+        val textview2 = holder.itemView.findViewById<TextView>(R.id.textView6)
+
+
+
+
+        textview.text = "Перейти к главе"
 
 
         if((parent.context as OglavlenieActivity).user.isAdmin == "1") {
@@ -63,7 +68,8 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
             bRemove.visibility = View.GONE
             bSave.visibility = View.GONE
             etName.isEnabled = false
-
+            textview1.visibility = View.GONE
+            textview2.visibility = View.GONE
         }
 
         button_oglav.setOnClickListener {
