@@ -147,16 +147,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Изменить адрес эл.почты"
         android:background="@color/background"
         android:stateListAnimator="@null"
-        android:textColor="#DDDDDD"
+        android:text="Изменить адрес эл.почты"
         android:textAllCaps="false"
+        android:textColor="#DDDDDD"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/change_pass"
+        app:layout_constraintVertical_bias="0.43" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

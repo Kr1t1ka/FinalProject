@@ -39,11 +39,11 @@
 
         android:id="@+id/recycle_theme"
 
-        android:layout_width="409dp"
-        android:layout_height="593dp"
-        android:layout_marginStart="5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
