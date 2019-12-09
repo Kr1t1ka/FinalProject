@@ -69,6 +69,10 @@ class OglavlenieActivity : AppCompatActivity() {
         mDatabaseReference.child(theme.ID).removeValue()
     }
 
+    fun saveTheme(theme: Theme){
+        mDatabaseReference.child(theme.ID).child("title").setValue(theme.Title)
+    }
+
     fun intentCourses(theme : Theme){
         val intent = Intent(this, CourseActivity().javaClass)
         intent.putExtra("Theme", theme)

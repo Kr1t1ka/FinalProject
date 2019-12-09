@@ -10,10 +10,12 @@ data class Slide(val ID: String,
                  val Body : String): Parcelable
 
 @Parcelize
-data class Course (val ID: String,
-                   val Name: String,
-                   val Description : String,
-                   val Price: Float) : Parcelable
+data class Course(
+    val ID: String,
+    var Name: String,
+    var Description: String,
+    val Price: Int
+) : Parcelable
 
 @Parcelize
 data class Theme(val ID: String,

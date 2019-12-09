@@ -98,8 +98,6 @@ class CourseActivity : AppCompatActivity() {
      */
     private fun addEventCourses(courseID: String){
 
-
-
         mDatabaseReference.addValueEventListener(object : ValueEventListener {
 
             /**если данные в БД меняются

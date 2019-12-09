@@ -7,20 +7,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.CoursesAdapter
 import bonch.dev.shool.fianlproject.moduls.data.Course
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import bonch.dev.shool.fianlproject.moduls.data.User
+import com.google.firebase.database.*
 
 class StoreFragment : Fragment() {
 
     private lateinit var storeRecyclerView: RecyclerView
-
+    private lateinit var bAddCourse: Button
+    private lateinit var user:User
+    //получаем точку входа для базы данных
+    private val mFirebaseDatabase = FirebaseDatabase.getInstance()
+    //получаем ссылку для работы с базой данных
+    private lateinit var mDatabaseReference : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,23 +38,31 @@ class StoreFragment : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_store, container, false)
 
+        user = (context as MainActivity).user
+        bAddCourse = view.findViewById(R.id.bAddCourse)
         storeRecyclerView = view.findViewById(R.id.recycle_store)
         storeRecyclerView.layoutManager = LinearLayoutManager(container!!.context)
+        mDatabaseReference = mFirebaseDatabase.getReference("Kurses")
 
         var adapter = CoursesAdapter()
         storeRecyclerView.adapter = adapter
 
         addEventCourses()
 
+        bAddCourse.setOnClickListener {
+            addCourse()
+        }
+
         return view
+    }
+
+    private fun addCourse(){
+        mDatabaseReference.push().setValue(Course("", "", "", 0))
     }
 
 
     private fun addEventCourses(){
-        //получаем точку входа для базы данных
-        val mFirebaseDatabase = FirebaseDatabase.getInstance()
-        //получаем ссылку для работы с базой данных
-        val mDatabaseReference = mFirebaseDatabase.getReference("Kurses")
+
         val courses = mutableListOf<Course>()
 
         mDatabaseReference.addValueEventListener(object : ValueEventListener {
@@ -59,28 +72,29 @@ class StoreFragment : Fragment() {
              * и переопределит адаптер
              */
             override fun onDataChange(data: DataSnapshot) {
-
+                courses.clear()
                 data.children.forEach { it ->
                     val id = it.key.toString()
 
 
-                    val name = it.child("Name").value.toString()
-                    val price = it.child("Price").value.toString()
-                    val description = it.child("Description").value.toString()
+                    val name = it.child("name").value.toString()
+                    val price = it.child("price").value.toString()
+                    val description = it.child("description").value.toString()
 
                     courses.add(
                         Course(
                             id,
                             name,
                             description,
-                            price.toFloat()
+                             price.toInt()
                         )
                     )
 
 
                 }
 
-                var adapter = CoursesAdapter(courses, true)
+                var adapter = CoursesAdapter(courses, true,
+                    user, true)
                 storeRecyclerView.adapter = adapter
             }
 
