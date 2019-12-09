@@ -49,9 +49,12 @@ class StoreFragment : Fragment() {
 
         addEventCourses()
 
-        bAddCourse.setOnClickListener {
-            addCourse()
-        }
+        if(user.isAdmin == "1")
+            bAddCourse.setOnClickListener {
+                addCourse()
+            }
+        else
+            bAddCourse.visibility = View.GONE
 
         return view
     }
