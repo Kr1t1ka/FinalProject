@@ -112,5 +112,11 @@ class OglavlenieActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        var intent = Intent(this, MainActivity().javaClass)
+        intent.putExtra("User",user)
+        startActivity(intent)
+        finish()
+    }
 
 }
