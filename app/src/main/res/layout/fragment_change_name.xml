@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Введите новый имя"
+        android:textColor="#FFFF"
+        android:textSize="22sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/etName"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:background="#605F5F"
+        android:hint="Имя"
+        android:textSize="20sp"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/add"
+        android:layout_height="wrap_content"
+        android:text="Приминить"
+        android:stateListAnimator="@null"
+        android:background="@color/background"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"/>
+
+</LinearLayout>

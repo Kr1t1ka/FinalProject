@@ -22,8 +22,8 @@
             android:id="@+id/image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
             android:background="#1C1C1C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +34,11 @@
             android:id="@+id/ibSave"
             android:layout_width="107dp"
             android:layout_height="33dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:background="#1C1C1C"
-            app:layout_constraintBottom_toTopOf="@+id/image_button"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/cardview_1"
             tools:ignore="VectorDrawableCompat" />
 
@@ -46,11 +46,11 @@
             android:id="@+id/ibRemove"
             android:layout_width="105dp"
             android:layout_height="34dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:background="#1C1C1C"
-            app:layout_constraintBottom_toTopOf="@+id/image_button"
-            app:layout_constraintStart_toEndOf="@+id/ibSave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/cardview_1"
             tools:ignore="VectorDrawableCompat" />
 
@@ -58,32 +58,20 @@
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="26dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="35dp"
             android:background="#1C1C1C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/cardview_2"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="18dp"
-            android:background="#1C1C1C"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/image_on_cardview"
+            app:srcCompat="@drawable/cardview_2"
             tools:ignore="VectorDrawableCompat" />
 
         <EditText
             android:id="@+id/etName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="22dp"
             android:text="Название"
             android:textColor="#CCCCCC"
             android:textSize="30sp"
@@ -116,6 +104,26 @@
             app:layout_constraintTop_toTopOf="@+id/button3"
             app:srcCompat="@drawable/vector"
             tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Сохранить"
+            app:layout_constraintBottom_toBottomOf="@+id/ibSave"
+            app:layout_constraintEnd_toEndOf="@+id/ibSave"
+            app:layout_constraintStart_toStartOf="@+id/ibSave"
+            app:layout_constraintTop_toTopOf="@+id/ibSave" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Удалить"
+            app:layout_constraintBottom_toBottomOf="@+id/ibRemove"
+            app:layout_constraintEnd_toEndOf="@+id/ibRemove"
+            app:layout_constraintStart_toStartOf="@+id/ibRemove"
+            app:layout_constraintTop_toTopOf="@+id/ibRemove" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

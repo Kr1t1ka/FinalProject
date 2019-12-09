@@ -11,6 +11,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.Activity.StartActivity
+import bonch.dev.shool.fianlproject.Fragment.change.MailFragment
+import bonch.dev.shool.fianlproject.Fragment.change.NameFragment
+import bonch.dev.shool.fianlproject.Fragment.change.PasswordFragment
 
 import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.User
@@ -21,8 +24,13 @@ class ProfileFragment : Fragment() {
 
     private lateinit var exitButton : ImageButton
     private lateinit var user: User
-    private lateinit var addCurses: Button
     private lateinit var tvName: TextView
+    private lateinit var buttonChangePass: Button
+    private lateinit var buttonChangeName: Button
+    private lateinit var buttonChangeMail: Button
+    private lateinit var passwordFragment: PasswordFragment
+    private lateinit var nameFragment: NameFragment
+    private lateinit var mailFragment: MailFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,19 +41,39 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
         tvName = view.findViewById(R.id.user_name)
         user = (context as MainActivity).user
         exitButton = view.findViewById(R.id.button2)
-        addCurses = view.findViewById(R.id.add_cuses)
+
+        buttonChangeMail = view.findViewById(R.id.change_email)
+        buttonChangeName = view.findViewById(R.id.change_name)
+        buttonChangePass = view.findViewById(R.id.change_pass)
+
+        passwordFragment = PasswordFragment()
+        nameFragment = NameFragment()
+        mailFragment = MailFragment()
+
+        buttonChangePass.setOnClickListener {
+            fragmentManager?.let { it1 ->
+                passwordFragment.show(it1,"passwordFragment")
+            }
+        }
+
+        buttonChangeName.setOnClickListener {
+            fragmentManager?.let { it1 ->
+                nameFragment.show(it1,"nameFragment")
+            }
+        }
+
+        buttonChangeMail.setOnClickListener {
+            fragmentManager?.let { it1 ->
+                mailFragment.show(it1,"mailFragment")
+            }
+        }
+
 
         val admin : String = user.isAdmin
-
-        if(admin == "1"){
-            addCurses.setVisibility(View.VISIBLE)
-        }else{
-            addCurses.setVisibility(View.GONE)
-        }
 
         tvName.text = user.UserName
 

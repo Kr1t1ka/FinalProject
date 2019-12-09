@@ -62,7 +62,8 @@
         android:stateListAnimator="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_email" />
 
     <TextView
         android:id="@+id/textView4"
@@ -86,19 +87,6 @@
         android:textColor="#DDDDDD"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-    <Button
-        android:id="@+id/add_cuses"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="236dp"
-        android:background="#A8A7A7"
-        android:stateListAnimator="@null"
-        android:text="Добавить курс"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
@@ -153,12 +141,10 @@
         android:textAllCaps="false"
         android:textColor="#DDDDDD"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_pass"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintTop_toBottomOf="@+id/change_pass" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
