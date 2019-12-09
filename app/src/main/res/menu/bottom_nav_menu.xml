@@ -3,23 +3,23 @@
 
     <item
         android:id="@+id/navigation_courses"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/home_image"
         android:title="Курсы" />
 
     <item
         android:id="@+id/navigation_store"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/store_image"
         android:title="Магазин" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/profile_image"
         android:title="Профиль" />
 
     <item
         android:id="@+id/navigation_ficha"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="Фича" />
+        android:icon="@drawable/cat_gay"
+        android:title="Коты" />
 
 
 </menu>

@@ -3,7 +3,11 @@ package bonch.dev.shool.fianlproject.moduls
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< Updated upstream
 import android.widget.EditText
+=======
+import android.widget.Button
+>>>>>>> Stashed changes
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +30,7 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.courses_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         this.parent = parent
 
         return MessageHolder(view)
@@ -41,9 +45,14 @@ class ThemeAdapter(): RecyclerView.Adapter<ThemeAdapter.MessageHolder>() {
         tvName.text = themeList[position].Title
         val etName = holder.itemView.findViewById<EditText>(R.id.textView2)
         val button = holder.itemView.findViewById<ImageButton>(R.id.button3)
+<<<<<<< Updated upstream
         val bRemove = holder.itemView.findViewById<ImageButton>(R.id.ibRemove)
         val bSave = holder.itemView.findViewById<ImageButton>(R.id.ibSave)
         val button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
+=======
+
+        val button_oglav = holder.itemView.findViewById<Button>(R.id.image_button)
+>>>>>>> Stashed changes
 
         if((parent.context as OglavlenieActivity).user.isAdmin == "1") {
             button.setOnClickListener {
