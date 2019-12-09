@@ -13,6 +13,7 @@ import bonch.dev.shool.fianlproject.R
 import bonch.dev.shool.fianlproject.moduls.data.Slide
 import bonch.dev.shool.fianlproject.moduls.data.User
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.course_fragment.*
 
 
 class PlaceholderFragment : Fragment() {
@@ -88,6 +89,7 @@ class PlaceholderFragment : Fragment() {
             buttonSave.visibility = View.GONE
             tvMessage.isEnabled = false
             slaideName.isEnabled = false
+            slaideName.visibility = View.GONE
             buttonDel.visibility = View.GONE
         }
 

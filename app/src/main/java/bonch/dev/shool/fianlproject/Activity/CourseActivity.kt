@@ -136,6 +136,7 @@ class CourseActivity : AppCompatActivity() {
         intent.putExtra("Course",course)
         startActivity(intent)
         finish()
+
     }
 
 }
