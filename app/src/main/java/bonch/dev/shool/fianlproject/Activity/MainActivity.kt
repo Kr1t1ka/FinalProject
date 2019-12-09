@@ -1,6 +1,8 @@
 package bonch.dev.shool.fianlproject.Activity
 
+import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,10 +19,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
-    public lateinit var user : User
+    public lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,10 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         AppBarConfiguration(
             setOf(
-                R.id.navigation_courses, R.id.navigation_store, R.id.navigation_profile, R.id.navigation_ficha
+                R.id.navigation_courses,
+                R.id.navigation_store,
+                R.id.navigation_profile,
+                R.id.navigation_ficha
             )
         )
 
@@ -42,12 +48,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun intentCourses(course : Course) {
+    fun intentCourses(course: Course) {
         //получаем точку входа для базы данных
         val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
-        val mDatabaseReference = mFirebaseDatabase.getReference("Users/" +
-                "${user.ID}/Courses")
+        val mDatabaseReference = mFirebaseDatabase.getReference(
+            "Users/" +
+                    "${user.ID}/Courses"
+        )
 
         mDatabaseReference
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -70,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    fun saveCourse(course:Course){
+    fun saveCourse(course: Course) {
         //получаем точку входа для базы данных
         val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
@@ -79,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         mDatabaseReference.child(course.ID).child("name").setValue(course.Name)
     }
 
-    fun removeCourse(course:Course){
+    fun removeCourse(course: Course) {
         //получаем точку входа для базы данных
         val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
@@ -88,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         mDatabaseReference.child(course.ID).removeValue()
     }
 
-    fun removeCoursesUsers(course : Course) {
+    fun removeCoursesUsers(course: Course) {
         //получаем точку входа для базы данных
         val mFirebaseDatabase = FirebaseDatabase.getInstance()
         //получаем ссылку для работы с базой данных
@@ -117,7 +125,7 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
-    fun intentOglav(course : Course) {
+    fun intentOglav(course: Course) {
         val intent = Intent(this, OglavlenieActivity().javaClass)
         intent.putExtra("Course", course)
         intent.putExtra("User", user)
@@ -126,4 +134,19 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setTitle("Exit")
+            .setMessage("Вы действительно хотите выйти?")
+            .setPositiveButton("Да",
+                DialogInterface.OnClickListener { dialog, which ->
+                    finishAffinity()
+                    finish()
+                }
+            ).setNegativeButton("Нет", null).show()
+    }
+
 }
+
