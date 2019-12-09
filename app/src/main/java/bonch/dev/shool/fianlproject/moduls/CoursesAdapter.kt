@@ -50,7 +50,7 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
         holder.bind()
 
-        etName = holder.itemView.findViewById<EditText>(R.id.textView2)
+        etName = holder.itemView.findViewById(R.id.etName)
         val button = holder.itemView.findViewById<ImageButton>(R.id.button3)
         val button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
 

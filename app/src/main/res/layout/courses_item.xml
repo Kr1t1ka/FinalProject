@@ -79,7 +79,7 @@
             tools:ignore="VectorDrawableCompat" />
 
         <EditText
-            android:id="@+id/textView2"
+            android:id="@+id/etName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
