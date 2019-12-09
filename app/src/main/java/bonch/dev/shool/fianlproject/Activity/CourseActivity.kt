@@ -1,6 +1,7 @@
 package bonch.dev.shool.fianlproject.Activity
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.tabs.TabLayout
@@ -126,6 +127,15 @@ class CourseActivity : AppCompatActivity() {
             }
 
         });
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, OglavlenieActivity().javaClass)
+        intent.putExtra("User",user)
+        intent.putExtra("Theme",theme)
+        intent.putExtra("Course",course)
+        startActivity(intent)
+        finish()
     }
 
 }
