@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bonch.dev.shool.fianlproject.Activity.MainActivity
 import bonch.dev.shool.fianlproject.Fragment.StoreFragment
@@ -57,8 +58,13 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
 
         val bRemove = holder.itemView.findViewById<ImageButton>(R.id.ibRemove)
         val bSave = holder.itemView.findViewById<ImageButton>(R.id.ibSave)
+        val delText = holder.itemView.findViewById<TextView>(R.id.delText)
+
+        if(isStore){delText.text = "Добавить"}
+
 
         if(isStore && user.isAdmin == "1"){
+
             bSave.setOnClickListener{
                 courseList[position].Name = etName.text.toString()
                 (parent.context as MainActivity).saveCourse(courseList[position])
