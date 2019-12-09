@@ -21,7 +21,7 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     private var addOdRemove: Boolean = true
     private lateinit var user:User
     private var isStore = false
-    private lateinit var etName : EditText
+
 
     constructor(list: MutableList<Course>, addOdRemove: Boolean, isStore: Boolean): this(){
         courseList = list
@@ -50,7 +50,8 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     override fun onBindViewHolder(holder: MessageHolder, position: Int) {
         holder.bind()
 
-        etName = holder.itemView.findViewById(R.id.etName)
+        val etName  = holder.itemView.findViewById<EditText>(R.id.etName)
+        etName.setText(courseList[position].Name)
         val button = holder.itemView.findViewById<ImageButton>(R.id.button3)
         val button_oglav = holder.itemView.findViewById<ImageButton>(R.id.image_button)
 
@@ -88,7 +89,7 @@ class CoursesAdapter(): RecyclerView.Adapter<CoursesAdapter.MessageHolder>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        return 1
+        return position
     }
 
     inner class MessageHolder(view: View) : RecyclerView.ViewHolder(view){
