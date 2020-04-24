@@ -2,4 +2,5 @@ app/app.iml
 local.properties
 .gradle/
 .idea/
+*.log
 FinalProject.iml
